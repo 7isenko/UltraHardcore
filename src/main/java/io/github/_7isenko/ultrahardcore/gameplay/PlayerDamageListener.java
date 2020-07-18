@@ -17,6 +17,7 @@ public class PlayerDamageListener implements Listener {
     public void onPlayerDamage(EntityDamageEvent event) {
         if (event.getEntityType() != EntityType.PLAYER) return;
         Player player = (Player) event.getEntity();
+        if (player.isBlocking()) return;
         if (r.nextDouble() > 0.5D) {
             dropRandomItemFromHotbar(player);
         }

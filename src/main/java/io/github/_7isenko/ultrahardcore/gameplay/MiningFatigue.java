@@ -75,6 +75,7 @@ public class MiningFatigue implements Listener {
             return;
         Bukkit.getWorlds().get(0).getPlayers().forEach((player) -> {
             players.remove(player);
+            player.removePotionEffect(PotionEffectType.SLOW_DIGGING);
             ChatUtils.sendTitle(player, "You woke up well rested", ChatColor.GREEN);
         });
     }
