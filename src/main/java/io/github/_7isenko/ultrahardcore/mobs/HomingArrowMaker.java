@@ -18,7 +18,7 @@ public class HomingArrowMaker implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onShot(EntityShootBowEvent event) {
-        final Arrow arrow = (Arrow) event.getProjectile();
+        final AbstractArrow arrow = (AbstractArrow) event.getProjectile();
         if (event.getEntity() instanceof Player)
             return;
         new HomingProjectile(arrow).runTaskTimer(UltraHardcore.plugin, 5, 3);
@@ -35,13 +35,13 @@ public class HomingArrowMaker implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onHit(ProjectileHitEvent event) {
         if (event.getEntity().getShooter() == event.getHitEntity()) {
-            if (event.getEntity() instanceof Arrow) {
-                ((Arrow) event.getEntity()).setDamage(100);
+            if (event.getEntity() instanceof AbstractArrow) {
+                ((AbstractArrow) event.getEntity()).setDamage(100);
                 if (event.getEntity().getShooter() instanceof Player)
                     ChatUtils.sendTitle((Player) event.getEntity().getShooter(), "HEADSHOT", ChatColor.RED);
             }
         }
-        if (event.getEntity() instanceof Arrow)
+        if (event.getEntity() instanceof AbstractArrow)
             event.getEntity().remove();
         if (!(event.getEntity().getShooter() instanceof Player) && event.getHitBlock() != null) {
             Location location = event.getHitBlock().getLocation();

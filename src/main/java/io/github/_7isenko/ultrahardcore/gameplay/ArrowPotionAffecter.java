@@ -19,10 +19,12 @@ public class ArrowPotionAffecter implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onShot(EntityShootBowEvent event) {
-        Arrow arrow = (Arrow) event.getProjectile();
-        if (event.getEntity() instanceof Player)
-            addGoodPotionEffect(arrow);
-        else addBadPotionEffect(arrow);
+        if (event.getProjectile() instanceof Arrow) {
+            Arrow arrow = (Arrow) event.getProjectile();
+            if (event.getEntity() instanceof Player)
+                addGoodPotionEffect(arrow);
+            else addBadPotionEffect(arrow);
+        }
     }
 
     private static void addGoodPotionEffect(Arrow a) {
