@@ -1,6 +1,7 @@
 package io.github._7isenko.ultrahardcore.mobs;
 
 import io.github._7isenko.ultrahardcore.UltraHardcore;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.*;
@@ -38,7 +39,7 @@ public class HomingArrowMaker implements Listener {
             if (event.getEntity() instanceof AbstractArrow) {
                 ((AbstractArrow) event.getEntity()).setDamage(100);
                 if (event.getEntity().getShooter() instanceof Player)
-                    ((Player) event.getEntity().getShooter()).sendTitle(Color.RED + "HEADSHOT", "");
+                    ((Player) event.getEntity().getShooter()).sendTitle(ChatColor.translateAlternateColorCodes('&', "&cHEADSHOT"), "");
             }
         }
         if (event.getEntity() instanceof AbstractArrow)

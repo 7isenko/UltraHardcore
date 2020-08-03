@@ -2,6 +2,7 @@ package io.github._7isenko.ultrahardcore.gameplay;
 
 import io.github._7isenko.ultrahardcore.UltraHardcore;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -49,21 +50,21 @@ public class MiningFatigue implements Listener {
 
         if (value > 63) {
             if (player.getPotionEffect(PotionEffectType.SLOW_DIGGING) == null || player.getPotionEffect(PotionEffectType.SLOW_DIGGING).getAmplifier() <= 1)
-                player.sendTitle(Color.RED + "You're tired as hell", "");
+                player.sendTitle(ChatColor.translateAlternateColorCodes('&', "&4You're tired as hell"), "");
             player.addPotionEffect(fatigue(2));
             return;
         }
 
         if (value > 47) {
             if (player.getPotionEffect(PotionEffectType.SLOW_DIGGING) == null || player.getPotionEffect(PotionEffectType.SLOW_DIGGING).getAmplifier() == 0)
-                player.sendTitle(Color.GRAY + "You're too much tired", "");
+                player.sendTitle(ChatColor.translateAlternateColorCodes('&', "&8You're too much tired"), "");
             player.addPotionEffect(fatigue(1));
             return;
         }
 
         if (value > 31) {
             if (player.getPotionEffect(PotionEffectType.SLOW_DIGGING) == null)
-                player.sendTitle(Color.GRAY + "You're tired", "");
+                player.sendTitle(ChatColor.translateAlternateColorCodes('&', "&7You're tired"), "");
             player.addPotionEffect(fatigue(0));
         }
     }
@@ -75,7 +76,7 @@ public class MiningFatigue implements Listener {
         Bukkit.getWorlds().get(0).getPlayers().forEach((player) -> {
             players.remove(player);
             player.removePotionEffect(PotionEffectType.SLOW_DIGGING);
-            player.sendTitle(Color.GREEN + "You woke up well rested", "");
+            player.sendTitle(ChatColor.translateAlternateColorCodes('&', "&aYou woke up well rested"), "");
         });
     }
 
