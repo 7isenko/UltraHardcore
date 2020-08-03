@@ -1,8 +1,6 @@
 package io.github._7isenko.ultrahardcore.mobs;
 
 import io.github._7isenko.ultrahardcore.UltraHardcore;
-import io.github._7isenko.ultrahardcore.utils.ChatUtils;
-import net.md_5.bungee.api.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.*;
@@ -13,6 +11,8 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
+
+import java.awt.*;
 
 public class HomingArrowMaker implements Listener {
 
@@ -38,7 +38,7 @@ public class HomingArrowMaker implements Listener {
             if (event.getEntity() instanceof AbstractArrow) {
                 ((AbstractArrow) event.getEntity()).setDamage(100);
                 if (event.getEntity().getShooter() instanceof Player)
-                    ChatUtils.sendTitle((Player) event.getEntity().getShooter(), "HEADSHOT", ChatColor.RED);
+                    ((Player) event.getEntity().getShooter()).sendTitle(Color.RED + "HEADSHOT", "");
             }
         }
         if (event.getEntity() instanceof AbstractArrow)

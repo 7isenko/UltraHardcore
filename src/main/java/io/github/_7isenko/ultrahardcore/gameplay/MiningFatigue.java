@@ -1,9 +1,8 @@
 package io.github._7isenko.ultrahardcore.gameplay;
 
 import io.github._7isenko.ultrahardcore.UltraHardcore;
-import io.github._7isenko.ultrahardcore.utils.ChatUtils;
-import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -50,21 +49,21 @@ public class MiningFatigue implements Listener {
 
         if (value > 63) {
             if (player.getPotionEffect(PotionEffectType.SLOW_DIGGING) == null || player.getPotionEffect(PotionEffectType.SLOW_DIGGING).getAmplifier() <= 1)
-                ChatUtils.sendTitle(player, "You're tired as hell", ChatColor.DARK_RED);
+                player.sendTitle(Color.RED + "You're tired as hell", "");
             player.addPotionEffect(fatigue(2));
             return;
         }
 
         if (value > 47) {
             if (player.getPotionEffect(PotionEffectType.SLOW_DIGGING) == null || player.getPotionEffect(PotionEffectType.SLOW_DIGGING).getAmplifier() == 0)
-                ChatUtils.sendTitle(player, "You're too much tired", ChatColor.DARK_GRAY);
+                player.sendTitle(Color.GRAY + "You're too much tired", "");
             player.addPotionEffect(fatigue(1));
             return;
         }
 
         if (value > 31) {
             if (player.getPotionEffect(PotionEffectType.SLOW_DIGGING) == null)
-                ChatUtils.sendTitle(player, "You're tired", ChatColor.GRAY);
+                player.sendTitle(Color.GRAY + "You're tired", "");
             player.addPotionEffect(fatigue(0));
         }
     }
@@ -76,7 +75,7 @@ public class MiningFatigue implements Listener {
         Bukkit.getWorlds().get(0).getPlayers().forEach((player) -> {
             players.remove(player);
             player.removePotionEffect(PotionEffectType.SLOW_DIGGING);
-            ChatUtils.sendTitle(player, "You woke up well rested", ChatColor.GREEN);
+            player.sendTitle(Color.GREEN + "You woke up well rested", "");
         });
     }
 
